@@ -1,0 +1,3 @@
+Cuda Spirit is a native Windows Black Desert companion for returners and veterans: recovery planning, reward tracking, item/transfer safety, Pearl Shop guardrails, live public data, a click-through overlay, and an optional retrieval-aware OpenRouter AI advisor. Strictly external — zero memory reading, zero injection, zero botting. Self-contained single-file exe (no .NET install). Version 2.4.1 Obsidian UI.
+
+- MADE WITH GPT SOL 5.6 FABLE

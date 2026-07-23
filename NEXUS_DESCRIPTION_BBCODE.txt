@@ -1,0 +1,100 @@
+[center][size=6][b]CUDA SPIRIT 2.4.1[/b][/size]
+[size=4]OBSIDIAN UI · RECOVERY · SAFETY · LIVE DATA · DECISION COCKPIT[/size]
+A native Windows companion for Black Desert Online — built for the parts of BDO that punish uncertainty.[/center]
+
+[center][color=#D8AA63][b]ZERO MEMORY READING · ZERO INJECTION · ZERO PACKET SNIFFING · ZERO BOTTING[/b][/color][/center]
+
+
+[heading]Description[/heading]
+Cuda Spirit is a [b]self-contained Windows app[/b] for new adventurers, returning veterans, and long-time players who are tired of guessing.
+
+Black Desert scatters rewards across a dozen inboxes, hides binding and transfer rules, traps people into irreversible item choices and character deletion mistakes, and fills the Pearl Shop with offers that look better than they are. Cuda Spirit is built for that mess: [b]deterministic safety engines[/b], a versioned local SQLite knowledge store, current public-source sync, returner recovery, and optional [b]retrieval-focused AI guidance[/b]. Unknown or stale facts fail closed instead of becoming confident guesses.
+
+Version [b]2.4.1 · Obsidian UI[/b] replaces the older pill-heavy look with a sharper matte OLED cockpit: crisp geometry, restrained accents, five live themes, compact navigation, global [b]Ctrl+K[/b] command palette, and a reworked HUD / advisor overlay.
+
+[b]One self-contained exe. No .NET install for end users. Not affiliated with Pearl Abyss.[/b]
+
+
+[heading]Main features[/heading]
+[list]
+[*][b]Returner & Reroll Recovery:[/b] One-click rescue that refreshes a linked official adventurer profile when available, optionally enriches gear from a public Garmoth profile, syncs guides / patch notes / events / Pearl notices / classes / market / alerts / local imports, builds an ordered recovery plan into Navigator, and can enable a [b]seven-day no-spend shield[/b] so comeback excitement does not become a bad Pearl purchase. Each source fails independently.[/*]
+[*][b]Navigator:[/b] Persistent personalized priorities with due dates, cadence, pins, completion, and custom tasks — the short list of what to do next.[/*]
+[*][b]Reward Claim Center:[/b] Tracks the usual reward maze: website coupons, Web Storage, Mail, Black Spirit’s Safe, Challenges, attendance, passes, event pages, and guild rewards.[/*]
+[*][b]Item Intel:[/b] Paste exact item names / tooltips and get stop, keep, store, transfer, use, sell, conditional, or unknown verdicts when evidence supports them.[/*]
+[*][b]Transfer Lab:[/b] Guidance across ordinary storage, Magnus, storage maids, transaction maids, Family Inventory, Central Market warehouse, and family-character access — before you assume an item is stuck or movable.[/*]
+[*][b]Pearl Shop Guard:[/b] Deterministic value scoring plus official notice retrieval. Scores permanence, family-wide utility, binding, RNG, bundle padding, real vs advertised discount, free alternatives, duplicate convenience, budget, and playtime. Active no-spend shield [b]hard-blocks[/b] paid-offer recommendations until you clear it with confirmation.[/*]
+[*][b]Character Retirement Gate:[/b] Fail-closed checklist before any “safe to delete” result. Proves [i]you checked[/i] inventories, Pearl value, gear, crystals, artifacts, mounts, ships, workers, tags, season state, rewards, trade/guild items, and deletion cooldowns — the app cannot inspect the live client, so it never pretends deletion is magically reversible.[/*]
+[*][b]Class & Fresh-Character Advisor:[/b] Play-feel matching (range, pace, complexity, survivability, PvE/PvP, support, grab, APM) plus safer season / trial / Character Tag / Item Copy guidance before permanent paid value.[/*]
+[*][b]UI Decoder:[/b] Searchable human-language paths through Black Desert’s interface maze.[/*]
+[*][b]Farm Route Optimizer:[/b] AP/DP fit, expected value, travel overhead, objective, risk, and graph routing from your local / imported route data.[/*]
+[*][b]Live Data Center:[/b] Source health, freshness, record counts, imports, search, and manual sync. Fast feeds and stable guides use separate schedules; degraded sources retry on a controlled window instead of rotting for a day.[/*]
+[*][b]Auto-sync public sources:[/b] Official patch notes, guides, events, Pearl notices, class pages; Arsha Central Market data for supported regions; optional BDO Alerts API; optional official adventurer profile (paste once, refresh on launch + restrained cadence); optional public Garmoth enrichment; recursive watch of [code]%APPDATA%\CudaSpirit\imports[/code] for supported JSON exports.[/*]
+[*][b]Retrieval-aware AI Advisor (optional):[/b] OpenRouter-powered chat. SQLite FTS5 pulls only relevant bounded records with source, region, confidence, timestamps, expiry, and health metadata — plus profile, tasks, decisions, and freshness context. Defaults route through OpenRouter auto/free buckets you can override in Settings. Missing evidence is surfaced instead of invented.[/*]
+[*][b]AI Vision Scan (optional):[/b] “Scan Gear” uses DXGI desktop capture so a vision model can read gear from your screen when public profile data is unavailable. Requires an OpenRouter key.[/*]
+[*][b]Smart Overlay:[/b] Transparent floating HUD that can track the game window, toggle interactive vs click-through (for display-only play), and surface advisor / task context without injecting into the client.[/*]
+[*][b]Enhancement & calculators:[/b] Enhancement cost planner (Monte-Carlo taps / cron estimates — rates are community-modeled, not official PA tables), marketplace tax calculator, and cron-source optimizer.[/*]
+[*][b]Trackers & timers:[/b] Live countdowns for Night Vendor refresh, Imperial Delivery reset, and daily reset; grind buff timers for elixirs, perfumes, draughts, meals, cron meals, and custom durations with progress feedback.[/*]
+[*][b]Embedded web references:[/b] WebView2 browser tab with shortcuts to community tools (Garmoth, BDO Codex, Bdolytics, and related public pages) without leaving the cockpit.[/*]
+[*][b]Live market:[/b] Arsha-backed Central Market price tracking / history for supported regions from public feeds — not game-client sniffing.[/*]
+[*][b]Boss / alert intel (optional):[/b] Optional BDO Alerts key for bosses, resets, maintenance, news, coupons, and supported market feeds when you want that channel.[/*]
+[*][b]Make it yours:[/b] Five themes (Obsidian Gold, Abyssal OLED, Serendia Gold, Kamasylvia Grove, Mountain of Eternal Winter), font scale, density, compact nav rail, reduced motion, beginner hints, startup page, progression profile, budget, and owned conveniences.[/*]
+[/list]
+
+
+[heading]Privacy & anti-cheat safety[/heading]
+Cuda Spirit is a [b]companion and decision-support app[/b]. It is designed to stay external to the game client.
+[list]
+[*][b]ZERO memory reading[/b] of [code]BlackDesert64.exe[/code] or any game process.[/*]
+[*][b]ZERO DLL injection, hooks, or client modification.[/*]
+[*][b]ZERO packet sniffing or anti-cheat evasion.[/*]
+[*][b]ZERO input automation / botting / unattended gameplay.[/*]
+[*]Data comes from [b]public pages and APIs[/b], [b]manual entry[/b], [b]local JSON imports you place[/b], and [b]optional DXGI screen capture[/b] you trigger.[/*]
+[*]Network traffic only happens for features you enable (public BDO pages/APIs, optional BDO Alerts, optional profile/Garmoth pages, OpenRouter when AI is used).[/*]
+[*]OpenRouter prompts may include your question, retrieved knowledge, saved profile fields, open Navigator tasks, and recent decision summaries. [b]Do not paste passwords, payment info, support tickets, or recovery codes.[/b][/*]
+[*]Local data lives under [code]%APPDATA%\CudaSpirit[/code] ([code]settings.json[/code], [code]cudaspirit.db[/code], [code]imports\[/code]). API keys are stored in local settings and should be treated as secrets. Public releases never ship your database, keys, imports, or screenshots.[/*]
+[/list]
+
+
+[heading]Installation & setup[/heading]
+[list=1]
+[*]Download and extract [code]Cuda-Spirit-2.4.1-Nexus-win-x64.zip[/code].[/*]
+[*]Run [code]CudaSpirit.exe[/code] (or [code]RUN CUDA SPIRIT.bat[/code]) from any folder [b]outside Program Files[/b].[/*]
+[*]No .NET runtime or SDK is required for this self-contained release. WebView2 Runtime is used for official-page fallback and the embedded browser (preinstalled on Windows 11; Microsoft Evergreen Runtime on most Windows 10 systems).[/*]
+[*]Open [b]Customize[/b]: set region, stage, focus, weekly hours, spending style, budget, and owned conveniences.[/*]
+[*](Optional) On the Dashboard / recovery flow, paste your [b]official BDO adventurer profile link[/b] and sync. Optionally fetch public Garmoth enrichment when available.[/*]
+[*](Optional) Open [b]Settings[/b] and paste an [b]OpenRouter[/b] API key only if you want AI Advisor / Vision Scan.[/*]
+[*]Open [b]Returner & Reroll Recovery[/b] if you are coming back; use [b]Rewards[/b], [b]Item Intel[/b], [b]Transfer Lab[/b], and [b]Pearl Shop Guard[/b] before irreversible actions.[/*]
+[*]Toggle the [b]Overlay[/b] when you want a floating HUD. Prefer Borderless / Windowed game display for window tracking.[/*]
+[/list]
+[i]Core recovery, safety, calculators, trackers, and data workspaces run without an AI key. AI is optional context on top of local evidence — not a requirement to use the app.[/i]
+
+
+[heading]Requirements[/heading]
+[list]
+[*][b]OS:[/b] 64-bit Windows 10 or Windows 11.[/*]
+[*][b]Package:[/b] Self-contained [code]CudaSpirit.exe[/code] (no separate .NET install).[/*]
+[*][b]WebView2 Runtime:[/b] For embedded references / rendered official-page fallback.[/*]
+[*][b]Internet:[/b] For live public sync (offline local tools still work with cached / imported data).[/*]
+[*][b]OpenRouter API key:[/b] Optional — only for AI Advisor and Vision Scan.[/*]
+[*][b]Game display:[/b] Borderless or Windowed recommended for overlay window tracking.[/*]
+[/list]
+
+
+[heading]Uninstall[/heading]
+Delete the extract folder / [code]CudaSpirit.exe[/code]. Remove [code]%APPDATA%\CudaSpirit[/code] only if you also want to erase settings, the local knowledge DB, imports, and stored keys.
+
+
+[heading]Source[/heading]
+Open source tree and verified Windows build workflow:
+[url]https://github.com/ShugokiFable/Cuda-Spirit[/url]
+
+
+[heading]Shout outs[/heading]
+Massive thanks to the developers behind [b]Garmoth.com[/b], [b]BDO Codex[/b], and [b]Bdolytics[/b] for the community resources that keep BDO navigable. Huge shoutout to the [b]arsha.io[/b] team for public market data, and to every official Black Desert page that remains readable without a client dump.
+
+Not affiliated with Pearl Abyss.
+
+
+[center][i]- MADE WITH GPT SOL 5.6 FABLE -[/i][/center]
+
+[b][size=4]ANYTHING made from the opted-in rewards program will go towards Make-A-Wish Foundation.[/size][/b]
