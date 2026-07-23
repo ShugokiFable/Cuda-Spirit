@@ -79,7 +79,7 @@ jobs:
           Get-FileHash $exe -Algorithm SHA256 | Format-List | Out-File publish/SHA256.txt -Encoding utf8
 
       - name: Upload Windows release
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Cuda-Spirit-V2.4.1-Nexus
           path: work/publish/*
