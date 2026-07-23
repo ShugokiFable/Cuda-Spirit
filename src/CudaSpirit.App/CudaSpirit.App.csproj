@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <RootNamespace>CudaSpirit.App</RootNamespace>
+    <AssemblyName>CudaSpirit</AssemblyName>
+    <ApplicationIcon>cuda-spirit.ico</ApplicationIcon>
+    <Version>2.4.1</Version>
+    <AssemblyVersion>2.4.1.0</AssemblyVersion>
+    <FileVersion>2.4.1.0</FileVersion>
+
+    <!-- Keep publish output clean: one self-contained exe, no loose PDBs / XML docs / locale folders.
+         Native libs (WebView2 loader, e_sqlite3) are packed into the single file and self-extract. -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <DebugType>embedded</DebugType>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <CopyDebugSymbolFilesFromPackages>false</CopyDebugSymbolFilesFromPackages>
+    <CopyDocumentationFilesFromPackages>false</CopyDocumentationFilesFromPackages>
+    <!-- Don't copy the .xml/.pdb doc/symbol files that ship beside referenced assemblies
+         (e.g. Microsoft.Web.WebView2.*.xml). The bogus value matches no real extension. -->
+    <AllowedReferenceRelatedFileExtensions>.none</AllowedReferenceRelatedFileExtensions>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- WinForms is referenced only for Screen.PrimaryScreen bounds;
+         drop its implicit usings so WPF types stay unambiguous. -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="cuda-spirit.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4078.44" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.29" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CudaSpirit.Core\CudaSpirit.Core.csproj" />
+  </ItemGroup>
+
+</Project>

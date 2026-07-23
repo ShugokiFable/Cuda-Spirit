@@ -1,0 +1,130 @@
+<UserControl x:Class="CudaSpirit.App.Views.NavigatorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+
+        <Grid Margin="0,0,0,18">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Adventurer Navigator" Style="{StaticResource H1}"/>
+                    <Border Style="{StaticResource SuccessPill}" Margin="12,4,0,0" VerticalAlignment="Top">
+                        <StackPanel Orientation="Horizontal"><Border Width="6" Height="6" Background="{DynamicResource SuccessBrush}" Margin="0,0,6,0"/><TextBlock Text="PERSONALIZED" Style="{StaticResource Caption}" FontWeight="SemiBold"/></StackPanel>
+                    </Border>
+                </StackPanel>
+                <TextBlock Text="Your safest, highest-value next steps. Built from live data, your progression profile, and unresolved decisions."
+                           Style="{StaticResource Muted}" Margin="0,5,0,0" TextWrapping="Wrap"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Style="{StaticResource SubtleButton}" Content="Sync live data" Click="OnSync" Margin="0,0,9,0"/>
+                <Button Style="{StaticResource GlowButton}" Content="Rebuild my plan" Click="OnGenerate"/>
+            </StackPanel>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel>
+                <Border Style="{StaticResource HeroCard}" Margin="0,0,0,16">
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="1.25*"/><ColumnDefinition Width="18"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <Border Style="{StaticResource AccentPill}" HorizontalAlignment="Left" Margin="0,0,0,13">
+                                <TextBlock Text="CURRENT FOCUS" Style="{StaticResource Caption}" FontWeight="SemiBold"/>
+                            </Border>
+                            <TextBlock x:Name="GoalText" FontSize="23" FontWeight="SemiBold" TextWrapping="Wrap" LineHeight="30"/>
+                            <TextBlock x:Name="ProfileText" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,9,0,0"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="1" Background="{DynamicResource BorderStrongBrush}" HorizontalAlignment="Center" Margin="0,2"/>
+                        <Border Grid.Column="2" Style="{StaticResource InsetCard}" Padding="16">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <Border Width="30" Height="30" CornerRadius="4" Background="{DynamicResource AccentWashBrush}" Margin="0,0,10,0">
+                                        <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource EmberBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Next best action" Style="{StaticResource H2}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <TextBlock x:Name="NextTitle" FontSize="17" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                <TextBlock x:Name="NextDetail" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,7,0,0"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource Card}" Margin="0,0,10,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="32" Height="32" CornerRadius="4" Background="{DynamicResource SuccessWashBrush}" Margin="0,0,10,0">
+                                    <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource SuccessBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="Priority engine" Style="{StaticResource H3}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock Text="Urgent rewards and irreversible risks rise above generic progression chores." Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,12,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="1" Style="{StaticResource Card}" Margin="5,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="32" Height="32" CornerRadius="4" Background="{DynamicResource SecondaryWashBrush}" Margin="0,0,10,0">
+                                    <TextBlock Text="&#xE9D2;" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource PurpleBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="Freshness aware" Style="{StaticResource H3}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock Text="Every recommendation keeps source, region, timestamp, confidence, and expiry context." Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,12,0,0"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="2" Style="{StaticResource WarningCard}" Margin="10,0,0,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="32" Height="32" CornerRadius="4" Background="{DynamicResource WarningWashBrush}" Margin="0,0,10,0">
+                                    <TextBlock Text="&#xEA18;" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource WarningBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="Safety net" Style="{StaticResource H3}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock Text="Unknown item? Do not open, sell, delete, melt, extract, equip, or register it. Use Item Intel first." Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,12,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Top" Margin="0,0,0,13">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="My action queue" Style="{StaticResource H2}"/>
+                                <Border Style="{StaticResource StatusPill}" Margin="10,0,0,0"><TextBlock x:Name="QueueCount" Style="{StaticResource Caption}"/></Border>
+                            </StackPanel>
+                            <Button Grid.Column="1" Style="{StaticResource SubtleButton}" Content="Add custom task" Click="OnAddTask"/>
+                        </Grid>
+                        <DataGrid x:Name="TasksGrid" IsReadOnly="True" CanUserAddRows="False" MinHeight="290" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="PRIORITY" Binding="{Binding Priority}" Width="78"/>
+                                <DataGridTextColumn Header="TASK" Binding="{Binding Title}" Width="1.25*"/>
+                                <DataGridTextColumn Header="WHY / HOW" Binding="{Binding Detail}" Width="2*"/>
+                                <DataGridTextColumn Header="CATEGORY" Binding="{Binding Category}" Width="112"/>
+                                <DataGridTemplateColumn Header="ACTIONS" Width="160">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Content="Done" Tag="{Binding Id}" Click="OnDone" Style="{StaticResource TinyButton}" Margin="0,0,6,0"/>
+                                                <Button Content="Remove" Tag="{Binding Id}" Click="OnDelete" Style="{StaticResource TinyButton}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </Border>
+
+                <Border Style="{StaticResource InsetCard}" Padding="12" Margin="0,0,0,2">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource InfoBrush}" Margin="0,1,9,0"/>
+                        <TextBlock x:Name="StatusText" Style="{StaticResource Muted}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

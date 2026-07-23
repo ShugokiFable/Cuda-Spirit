@@ -1,0 +1,141 @@
+<UserControl x:Class="CudaSpirit.App.Views.CustomizeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+        <Grid Margin="0,0,0,18">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Make Cuda Spirit yours" Style="{StaticResource H1}"/>
+                    <Border Style="{StaticResource AccentPill}" Margin="12,4,0,0" VerticalAlignment="Top">
+                        <TextBlock Text="LIVE PREVIEW" Style="{StaticResource Caption}" FontWeight="SemiBold"/>
+                    </Border>
+                </StackPanel>
+                <TextBlock Text="Theme, density, accessibility, startup behavior, progression profile, and spending guardrails."
+                           Style="{StaticResource Muted}" Margin="0,5,0,0"/>
+            </StackPanel>
+            <Button Grid.Column="1" Style="{StaticResource GlowButton}" Content="Save &amp; apply" Click="OnSave" VerticalAlignment="Center"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel>
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="0.95*"/><ColumnDefinition Width="1.2*"/></Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource Card}" Margin="0,0,12,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="36" Height="36" CornerRadius="4" Background="{DynamicResource SecondaryWashBrush}" Margin="0,0,11,0">
+                                    <TextBlock Text="&#xE790;" FontFamily="Segoe MDL2 Assets" FontSize="17" Foreground="{DynamicResource PurpleBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center"><TextBlock Text="Appearance studio" Style="{StaticResource H2}"/><TextBlock Text="Changes preview instantly" Style="{StaticResource Caption}"/></StackPanel>
+                            </StackPanel>
+                            <TextBlock Text="Theme" Style="{StaticResource Muted}" Margin="0,16,0,4"/>
+                            <ComboBox x:Name="ThemeBox" SelectionChanged="OnLivePreview"/>
+                            <TextBlock Text="Interface density" Style="{StaticResource Muted}" Margin="0,12,0,4"/>
+                            <ComboBox x:Name="DensityBox" SelectionChanged="OnLivePreview"/>
+                            <TextBlock Text="Text scale" Style="{StaticResource Muted}" Margin="0,12,0,4"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="56"/></Grid.ColumnDefinitions>
+                                <Slider x:Name="FontScaleSlider" Minimum="0.85" Maximum="1.35" TickFrequency="0.05" IsSnapToTickEnabled="True" ValueChanged="OnLivePreview" Margin="0,0,10,0"/>
+                                <Border Grid.Column="1" Style="{StaticResource StatusPill}" HorizontalAlignment="Right"><TextBlock x:Name="FontScaleText" Style="{StaticResource Caption}" FontWeight="SemiBold"/></Border>
+                            </Grid>
+                            <Separator Margin="0,14,0,9"/>
+                            <CheckBox x:Name="CompactNavBox" Content="Compact icon navigation rail" Margin="0,4"/>
+                            <CheckBox x:Name="ReducedMotionBox" Content="Reduce page transition motion" Margin="0,4"/>
+                            <CheckBox x:Name="BeginnerHintsBox" Content="Show beginner safety hints" Margin="0,4"/>
+                            <TextBlock Text="Open at startup" Style="{StaticResource Muted}" Margin="0,13,0,4"/>
+                            <ComboBox x:Name="StartupBox"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1" Style="{StaticResource HeroCard}">
+                        <Grid>
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Live interface preview" Style="{StaticResource H2}"/>
+                                    <TextBlock Text="This is the same visual language used throughout the cockpit." Style="{StaticResource Muted}" Margin="0,4,0,0"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <Border Width="9" Height="9" Background="{DynamicResource CrimsonBrush}" Margin="4"/>
+                                    <Border Width="9" Height="9" Background="{DynamicResource PurpleBrush}" Margin="4"/>
+                                    <Border Width="9" Height="9" Background="{DynamicResource EmberBrush}" Margin="4"/>
+                                </StackPanel>
+                            </Grid>
+                            <Border Grid.Row="1" Style="{StaticResource ElevatedCard}" Margin="0,18,0,16" Padding="20">
+                                <Grid>
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Width="38" Height="38" CornerRadius="4" Background="{DynamicResource WarningWashBrush}" Margin="0,0,12,0">
+                                            <TextBlock Text="&#xEA18;" FontFamily="Segoe MDL2 Assets" FontSize="17" Foreground="{DynamicResource WarningBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="Your next safe move" FontSize="20" FontWeight="SemiBold"/>
+                                            <TextBlock Text="Item decision guard" Style="{StaticResource Caption}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <TextBlock Grid.Row="1" Text="Do not open an unknown reward box until Item Intel confirms its contents, expiry, binding behavior, and transfer route." TextWrapping="Wrap" LineHeight="21" Margin="0,16,0,0"/>
+                                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,16,0,0">
+                                        <Button Style="{StaticResource GlowButton}" Content="Analyze item" Margin="0,0,8,0"/>
+                                        <Button Style="{StaticResource SubtleButton}" Content="Check transfer"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+                                <Border Style="{StaticResource InsetCard}" Margin="0,0,6,0"><StackPanel><TextBlock Text="28" Style="{StaticResource MetricValue}"/><TextBlock Text="open actions" Style="{StaticResource Caption}"/></StackPanel></Border>
+                                <Border Grid.Column="1" Style="{StaticResource InsetCard}" Margin="3,0"><StackPanel><TextBlock Text="LIVE" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource SuccessBrush}"/><TextBlock Text="source state" Style="{StaticResource Caption}"/></StackPanel></Border>
+                                <Border Grid.Column="2" Style="{StaticResource InsetCard}" Margin="6,0,0,0"><StackPanel><TextBlock Text="SAFE" FontSize="18" FontWeight="SemiBold" Foreground="{DynamicResource WarningBrush}"/><TextBlock Text="unknown items" Style="{StaticResource Caption}"/></StackPanel></Border>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Border Style="{StaticResource Card}" Margin="0,0,12,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal"><Border Width="34" Height="34" CornerRadius="4" Background="{DynamicResource InfoWashBrush}" Margin="0,0,10,0"><TextBlock Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource InfoBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Adventurer profile" Style="{StaticResource H2}" VerticalAlignment="Center"/></StackPanel>
+                            <TextBlock Text="Progression stage" Style="{StaticResource Muted}" Margin="0,15,0,4"/><ComboBox x:Name="StageBox"/>
+                            <TextBlock Text="Main focus" Style="{StaticResource Muted}" Margin="0,11,0,4"/><ComboBox x:Name="FocusBox"/>
+                            <TextBlock Text="Main class" Style="{StaticResource Muted}" Margin="0,11,0,4"/><TextBox x:Name="MainClassBox"/>
+                            <TextBlock Text="Current goal" Style="{StaticResource Muted}" Margin="0,11,0,4"/><TextBox x:Name="GoalBox" AcceptsReturn="True" MinHeight="72" TextWrapping="Wrap"/>
+                            <TextBlock Text="Weekly play hours" Style="{StaticResource Muted}" Margin="0,11,0,4"/><TextBox x:Name="HoursBox"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1" Style="{StaticResource Card}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal"><Border Width="34" Height="34" CornerRadius="4" Background="{DynamicResource WarningWashBrush}" Margin="0,0,10,0"><TextBlock Text="&#xEA18;" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource WarningBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Convenience &amp; spending guardrails" Style="{StaticResource H2}" VerticalAlignment="Center"/></StackPanel>
+                            <TextBlock Text="Spending style" Style="{StaticResource Muted}" Margin="0,15,0,4"/><ComboBox x:Name="SpendingBox"/>
+                            <TextBlock Text="Monthly Pearl budget" Style="{StaticResource Muted}" Margin="0,11,0,4"/><TextBox x:Name="BudgetBox"/>
+                            <Separator Margin="0,14,0,9"/>
+                            <CheckBox x:Name="MagnusBox" Content="Magnus remote storage unlocked" Margin="0,4"/>
+                            <CheckBox x:Name="StorageMaidBox" Content="Own a storage maid or butler" Margin="0,4"/>
+                            <CheckBox x:Name="TransactionMaidBox" Content="Own a transaction maid or butler" Margin="0,4"/>
+                            <CheckBox x:Name="TentBox" Content="Own a campsite or tent" Margin="0,4"/>
+                            <Border Style="{StaticResource InsetCard}" Padding="12" Margin="0,14,0,0">
+                                <TextBlock Text="These flags change transfer instructions and block duplicate Pearl recommendations." Style="{StaticResource Muted}" TextWrapping="Wrap"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <Border Style="{StaticResource Card}">
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                        <Border Width="38" Height="38" CornerRadius="4" Background="{DynamicResource SurfaceHoverBrush}" Margin="0,0,12,0"><TextBlock Text="&#xE777;" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource InkSoftBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="Reset only the look" Style="{StaticResource H2}"/>
+                            <TextBlock Text="Restores the default appearance without touching API keys, progression, history, tasks, or database records." Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,4,20,0"/>
+                        </StackPanel>
+                        <Button Grid.Column="2" Style="{StaticResource SubtleButton}" Content="Reset appearance" Click="OnResetAppearance" VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource InsetCard}" Padding="12" Margin="0,12,0,0"><TextBlock x:Name="StatusText" Style="{StaticResource Muted}" TextWrapping="Wrap"/></Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

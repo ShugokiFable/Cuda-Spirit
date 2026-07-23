@@ -1,0 +1,190 @@
+<Window x:Class="CudaSpirit.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="Cuda Spirit - Black Desert Companion" Height="820" Width="1320"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" ResizeMode="CanResize"
+        Background="{DynamicResource BgDeepBrush}"
+        MinHeight="650" MinWidth="1024"
+        Icon="/cuda-spirit.ico">
+
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="52" ResizeBorderThickness="7" CornerRadius="0"
+                            GlassFrameThickness="0" UseAeroCaptionButtons="False"/>
+    </shell:WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <Style x:Key="CaptionBtn" TargetType="Button" BasedOn="{StaticResource GhostButton}">
+            <Setter Property="Width" Value="46"/><Setter Property="Height" Value="51"/>
+            <Setter Property="MinHeight" Value="0"/><Setter Property="Padding" Value="0"/>
+            <Setter Property="Foreground" Value="{DynamicResource InkSoftBrush}"/>
+            <Setter Property="shell:WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+            <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
+                <Border x:Name="Chrome" Background="Transparent"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Chrome" Property="Background" Value="{DynamicResource SurfaceHoverBrush}"/><Setter Property="Foreground" Value="{DynamicResource InkBrush}"/></Trigger>
+                    <Trigger Property="IsPressed" Value="True"><Setter TargetName="Chrome" Property="Background" Value="{DynamicResource SurfacePressedBrush}"/></Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate></Setter.Value></Setter>
+        </Style>
+        <Style x:Key="CloseBtn" TargetType="Button" BasedOn="{StaticResource CaptionBtn}">
+            <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
+                <Border x:Name="Chrome" Background="Transparent"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Chrome" Property="Background" Value="#FFB83B42"/><Setter Property="Foreground" Value="White"/></Trigger>
+                    <Trigger Property="IsPressed" Value="True"><Setter TargetName="Chrome" Property="Background" Value="#FF933139"/></Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate></Setter.Value></Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border x:Name="RootBorder" Background="{DynamicResource BgDeepBrush}" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions><RowDefinition Height="52"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+
+            <!-- Sharp, matte command bar -->
+            <Grid Grid.Row="0" Background="{DynamicResource BgPanelBrush}">
+                <Grid.RowDefinitions><RowDefinition Height="1"/><RowDefinition Height="51"/></Grid.RowDefinitions>
+                <Border Background="{DynamicResource CrimsonBrush}"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="360"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="16,0,0,0">
+                        <Border Width="28" Height="28" CornerRadius="3" Background="{DynamicResource BgPanelHiBrush}" BorderBrush="{DynamicResource CrimsonBrush}" BorderThickness="1" Margin="0,0,11,0">
+                            <Grid>
+                                <Border Width="9" Height="9" Background="{DynamicResource EmberBrush}" RenderTransformOrigin="0.5,0.5"><Border.RenderTransform><RotateTransform Angle="45"/></Border.RenderTransform></Border>
+                                <Border Width="18" Height="18" BorderBrush="{DynamicResource CrimsonBrush}" BorderThickness="1" RenderTransformOrigin="0.5,0.5"><Border.RenderTransform><RotateTransform Angle="45"/></Border.RenderTransform></Border>
+                            </Grid>
+                        </Border>
+                        <TextBlock Text="CUDA SPIRIT" FontWeight="SemiBold" FontSize="12" VerticalAlignment="Center"/>
+                        <Border Width="1" Height="18" Background="{DynamicResource BorderStrongBrush}" Margin="13,0"/>
+                        <TextBlock x:Name="PageCrumbText" Text="Adventurer Navigator" Style="{StaticResource Caption}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="170"/>
+                    </StackPanel>
+
+                    <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="550" MaxWidth="550" Height="36"
+                            Background="#B20A0B0D" BorderBrush="{DynamicResource BorderStrongBrush}" BorderThickness="1" CornerRadius="3"
+                            shell:WindowChrome.IsHitTestVisibleInChrome="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="36"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                            <TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource InkSoftBrush}"/>
+                            <Grid Grid.Column="1">
+                                <TextBlock x:Name="CommandPlaceholder" Text="Search tools, items, rewards, routes, Pearl value..." Style="{StaticResource Caption}" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                                <TextBox x:Name="CommandBox" Style="{StaticResource CommandTextBox}" VerticalContentAlignment="Center" KeyDown="OnCommandKeyDown" TextChanged="OnCommandTextChanged" ToolTip="Ask a question or jump to a tool. Ctrl+K"/>
+                            </Grid>
+                            <Border Grid.Column="2" Style="{StaticResource StatusPill}" Padding="7,2" Margin="6,0,7,0" VerticalAlignment="Center"><TextBlock Text="CTRL K" Style="{StaticResource Caption}" FontWeight="SemiBold"/></Border>
+                        </Grid>
+                    </Border>
+
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                        <Border Style="{StaticResource SuccessPill}" Padding="9,3" VerticalAlignment="Center" Margin="0,0,8,0">
+                            <StackPanel Orientation="Horizontal"><Border Width="6" Height="6" Background="{DynamicResource SuccessBrush}" Margin="0,0,7,0"/><TextBlock Text="LOCAL / READ-ONLY" Style="{StaticResource Caption}" FontWeight="SemiBold"/></StackPanel>
+                        </Border>
+                        <Button Style="{StaticResource CaptionBtn}" Click="OnMinimize" ToolTip="Minimize"><Border Width="11" Height="1" Background="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/></Button>
+                        <Button x:Name="MaxBtn" Style="{StaticResource CaptionBtn}" Click="OnMaxRestore" ToolTip="Maximize"><Border x:Name="MaxGlyph" Width="10" Height="10" BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" BorderThickness="1.2"/></Button>
+                        <Button Style="{StaticResource CloseBtn}" Click="OnCloseWindow" ToolTip="Close"><Grid Width="12" Height="12"><Border Width="14" Height="1.4" Background="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" RenderTransformOrigin="0.5,0.5"><Border.RenderTransform><RotateTransform Angle="45"/></Border.RenderTransform></Border><Border Width="14" Height="1.4" Background="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" RenderTransformOrigin="0.5,0.5"><Border.RenderTransform><RotateTransform Angle="-45"/></Border.RenderTransform></Border></Grid></Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions><ColumnDefinition x:Name="NavColumn" Width="256"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Background="{DynamicResource BgPanelBrush}" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,0,1,0">
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Top" Margin="18,18,14,12">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="3"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                            <Border Background="{DynamicResource CrimsonBrush}" Margin="0,2,0,2"/>
+                            <StackPanel x:Name="NavBrandDetails" Grid.Column="1" Margin="13,0,0,0">
+                                <TextBlock Text="COMMAND COCKPIT" FontSize="11" FontWeight="SemiBold"/>
+                                <TextBlock Text="V2.4.1  /  protected decisions" Style="{StaticResource Caption}" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource BorderSubtleBrush}" BorderThickness="0,1,0,0" Padding="12" Background="#18000000">
+                            <StackPanel>
+                                <Button x:Name="TasksButton" Style="{StaticResource GlowButton}" Content="Advisor overlay" Click="OnToggleTasks" Margin="0,0,0,8" ToolTip="Open the synchronized advisor overlay"/>
+                                <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+                                    <Button x:Name="OverlayButton" Style="{StaticResource TinyButton}" Content="HUD" Click="OnToggleOverlay" Margin="0,0,4,0" ToolTip="Toggle the read-only game HUD"/>
+                                    <Button x:Name="PassThroughBtn" Grid.Column="1" Style="{StaticResource TinyButton}" Content="Interactive" Click="OnTogglePassThrough" Margin="4,0,0,0" ToolTip="Toggle interactive or click-through overlays. Ctrl+Alt+O"/>
+                                </Grid>
+                                <TextBlock x:Name="SidebarSafetyText" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="2,9,2,0" Text="Advisory only. No injection, automation, or game control."/>
+                            </StackPanel>
+                        </Border>
+
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,6">
+                            <StackPanel x:Name="Nav">
+                                    <TextBlock x:Name="GuidedHeader" Text="GUIDED" Style="{StaticResource NavGroupLabel}"/>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="navigator" IsChecked="True" Checked="OnNav" AutomationProperties.Name="Adventurer Navigator" ToolTip="Adventurer Navigator">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE707;"/><TextBlock Text="Adventurer Navigator" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="recovery" Checked="OnNav" AutomationProperties.Name="Returner &amp; Reroll" ToolTip="Returner &amp; Reroll">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE72C;"/><TextBlock Text="Returner &amp; Reroll" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="rewards" Checked="OnNav" AutomationProperties.Name="Rewards &amp; Redemption" ToolTip="Rewards &amp; Redemption">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE7BF;"/><TextBlock Text="Rewards &amp; Redemption" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="items" Checked="OnNav" AutomationProperties.Name="Item Intel &amp; Transfer" ToolTip="Item Intel &amp; Transfer">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE721;"/><TextBlock Text="Item Intel &amp; Transfer" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="pearl" Checked="OnNav" AutomationProperties.Name="Pearl Shop Guard" ToolTip="Pearl Shop Guard">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xEA18;"/><TextBlock Text="Pearl Shop Guard" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="ui" Checked="OnNav" AutomationProperties.Name="In-game UI Decoder" ToolTip="In-game UI Decoder">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE7C4;"/><TextBlock Text="In-game UI Decoder" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <TextBlock x:Name="ToolsHeader" Text="TOOLS" Style="{StaticResource NavGroupLabel}"/>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="dashboard" Checked="OnNav" AutomationProperties.Name="Dashboard" ToolTip="Dashboard">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE80F;"/><TextBlock Text="Dashboard" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="gear" Checked="OnNav" AutomationProperties.Name="Gear &amp; Progression" ToolTip="Gear &amp; Progression">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE90F;"/><TextBlock Text="Gear &amp; Progression" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="enhance" Checked="OnNav" AutomationProperties.Name="Enhancement" ToolTip="Enhancement">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE945;"/><TextBlock Text="Enhancement" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="calc" Checked="OnNav" AutomationProperties.Name="Calculators" ToolTip="Calculators">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE8EF;"/><TextBlock Text="Calculators" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="market" Checked="OnNav" AutomationProperties.Name="Market &amp; Alerts" ToolTip="Market &amp; Alerts">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE8C7;"/><TextBlock Text="Market &amp; Alerts" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="data" Checked="OnNav" AutomationProperties.Name="Live Data Center" ToolTip="Live Data Center">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE9D2;"/><TextBlock Text="Live Data Center" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="routes" Checked="OnNav" AutomationProperties.Name="Farm Route Optimizer" ToolTip="Farm Route Optimizer">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE707;"/><TextBlock Text="Farm Route Optimizer" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="bosses" Checked="OnNav" AutomationProperties.Name="Bosses &amp; Events" ToolTip="Bosses &amp; Events">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE7C1;"/><TextBlock Text="Bosses &amp; Events" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="trackers" Checked="OnNav" AutomationProperties.Name="Trackers &amp; Timers" ToolTip="Trackers &amp; Timers">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE787;"/><TextBlock Text="Trackers &amp; Timers" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="advisor" Checked="OnNav" AutomationProperties.Name="AI Advisor" ToolTip="AI Advisor">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE8F2;"/><TextBlock Text="AI Advisor" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="web" Checked="OnNav" AutomationProperties.Name="Web &amp; References" ToolTip="Web &amp; References">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE774;"/><TextBlock Text="Web &amp; References" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <TextBlock x:Name="AppHeader" Text="APP" Style="{StaticResource NavGroupLabel}"/>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="customize" Checked="OnNav" AutomationProperties.Name="Customize" ToolTip="Customize">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE790;"/><TextBlock Text="Customize" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                    <RadioButton Style="{StaticResource NavButton}" GroupName="nav" Tag="settings" Checked="OnNav" AutomationProperties.Name="Technical Settings" ToolTip="Technical Settings">
+                                        <StackPanel Orientation="Horizontal"><TextBlock Style="{StaticResource NavIcon}" Text="&#xE713;"/><TextBlock Text="Technical Settings" Margin="8,0,0,0" VerticalAlignment="Center"/></StackPanel>
+                                    </RadioButton>
+                                <Border Height="12" Background="Transparent"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </DockPanel>
+                </Border>
+
+                <Grid Grid.Column="1" Background="{DynamicResource BgDeepBrush}">
+                    <Border Background="{DynamicResource EmberGlow}" IsHitTestVisible="False" Opacity="0.35"/>
+                    <ContentControl x:Name="Host" Margin="28,24,34,34" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

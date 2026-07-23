@@ -1,0 +1,37 @@
+<UserControl x:Class="CudaSpirit.App.Views.AdvisorChat"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+
+        <Border Style="{StaticResource InsetCard}" Padding="6" Background="#36000000">
+            <ScrollViewer x:Name="Scroll" VerticalScrollBarVisibility="Auto" Padding="4,3,7,3">
+                <ItemsControl x:Name="Chat">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="4" Padding="12,9" Margin="0,0,0,8" MaxWidth="570"
+                                    HorizontalAlignment="{Binding Align}" Background="{Binding Bubble}"
+                                    BorderBrush="{Binding Edge}" BorderThickness="1">
+                                <TextBlock Text="{Binding Text}" TextWrapping="Wrap" LineHeight="19"/>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+
+        <StackPanel Grid.Row="1" Margin="0,9,0,0">
+            <Button x:Name="QuickBtn" Style="{StaticResource SubtleButton}" Click="OnQuick" HorizontalAlignment="Left" Margin="0,0,0,8">
+                <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE945;" FontFamily="Segoe MDL2 Assets" Foreground="{DynamicResource PurpleBrush}" Margin="0,0,8,0"/><TextBlock Text="What should I do next?"/></StackPanel>
+            </Button>
+            <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                <TextBox x:Name="Input" MaxLength="600" KeyDown="OnInputKey" VerticalContentAlignment="Center"
+                         ToolTip="Ask about gear, rewards, grind spots, market choices, enhancement, or item safety."/>
+                <Button x:Name="SendBtn" Grid.Column="1" Style="{StaticResource GlowButton}" Click="OnSend" Margin="8,0,0,0" Width="46" Padding="0" ToolTip="Send">
+                    <TextBlock Text="&#xE724;" FontFamily="Segoe MDL2 Assets" FontSize="15"/>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

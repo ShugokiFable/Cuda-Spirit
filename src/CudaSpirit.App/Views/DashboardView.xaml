@@ -1,0 +1,155 @@
+<UserControl x:Class="CudaSpirit.App.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Text="Dashboard" Style="{StaticResource H1}" Margin="0,0,0,4"/>
+            <TextBlock Style="{StaticResource Muted}" Margin="0,0,0,14"
+                       Text="Your build at a glance. Sync your profile once - every tab plus the AI advisor sees it."/>
+
+            <!-- Auto-sync from BDO profile + Garmoth -->
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <DockPanel>
+                        <TextBlock Text="⟳ Auto-Sync" Style="{StaticResource H2}" DockPanel.Dock="Left"/>
+                        <TextBlock x:Name="SyncStatus" Style="{StaticResource Muted}" DockPanel.Dock="Right"
+                                   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    </DockPanel>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,4,0,8"
+                               Text="Paste your BDO profile link once. We auto-fill class, level, GS, CP, energy, guild and attempt to pull gear from Garmoth.com."/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="ProfileBox" Grid.Column="0" VerticalContentAlignment="Center" MinHeight="34"
+                                 ToolTip="Paste your profile link (…/Adventure/Profile?profileTarget=…) or token"/>
+                        <Button x:Name="SyncButton" Grid.Column="1" Style="{StaticResource GlowButton}" Content="Sync Profile"
+                                Margin="8,0,0,0" Click="OnSyncProfile"/>
+                        <Button x:Name="GarmothButton" Grid.Column="2" Style="{StaticResource GlowButton}" Content="Fetch Garmoth"
+                                Margin="8,0,0,0" Click="OnSyncGarmoth" ToolTip="Pull gear data from Garmoth.com by family name"/>
+                        <Button x:Name="ScanButton" Grid.Column="3" Style="{StaticResource GlowButton}" Content="📷 Scan Gear"
+                                Margin="8,0,0,0" Click="OnScanGear" ToolTip="Use AI vision to read your gear screen"/>
+                    </Grid>
+                    <TextBlock x:Name="ProfileSummary" Style="{StaticResource Muted}" Margin="0,8,0,0" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="GarmothStatus" Style="{StaticResource Muted}" Margin="0,4,0,0" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <!-- What we know (auto-fetched summary) -->
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="What we know about you" Style="{StaticResource H2}" Margin="0,0,0,8"/>
+                    <TextBlock x:Name="AutoSummary" Style="{StaticResource Muted}" TextWrapping="Wrap" FontSize="13"/>
+                </StackPanel>
+            </Border>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Quick state editor -->
+                <Border Grid.Column="0" Style="{StaticResource Card}" VerticalAlignment="Top">
+                    <StackPanel>
+                        <TextBlock Text="My character" Style="{StaticResource H2}" Margin="0,0,0,10"/>
+                        <UniformGrid Columns="2">
+                            <StackPanel Margin="0,0,8,8">
+                                <TextBlock Text="Class" Style="{StaticResource Muted}"/>
+                                <TextBox x:Name="ClassBox"/>
+                            </StackPanel>
+                            <StackPanel Margin="0,0,0,8">
+                                <TextBlock Text="Grind zone" Style="{StaticResource Muted}"/>
+                                <ComboBox x:Name="ZoneBox" IsEditable="True"/>
+                            </StackPanel>
+                            <StackPanel Margin="0,0,8,8">
+                                <TextBlock Text="AP" Style="{StaticResource Muted}"/>
+                                <TextBox x:Name="ApBox"/>
+                            </StackPanel>
+                            <StackPanel Margin="0,0,0,8">
+                                <TextBlock Text="Awakening AP" Style="{StaticResource Muted}"/>
+                                <TextBox x:Name="AwkBox"/>
+                            </StackPanel>
+                            <StackPanel Margin="0,0,8,8">
+                                <TextBlock Text="DP" Style="{StaticResource Muted}"/>
+                                <TextBox x:Name="DpBox"/>
+                            </StackPanel>
+                            <StackPanel Margin="0,0,0,8">
+                                <TextBlock Text="Silver" Style="{StaticResource Muted}"/>
+                                <TextBox x:Name="SilverBox"/>
+                            </StackPanel>
+                        </UniformGrid>
+                        <Button Style="{StaticResource GlowButton}" Content="Update state" Click="OnUpdate" HorizontalAlignment="Left" Margin="0,6,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Stat summary -->
+                <Border Grid.Column="2" Style="{StaticResource Card}" VerticalAlignment="Top">
+                    <StackPanel>
+                        <TextBlock Text="Gearscore" Style="{StaticResource H2}"/>
+                        <TextBlock x:Name="GearScoreText" FontSize="46" FontWeight="Bold"
+                                   Foreground="{DynamicResource EmberBrush}" Margin="0,4,0,0"/>
+                        <TextBlock x:Name="ApDpText" Style="{StaticResource Muted}"/>
+                        <Separator Margin="0,10" Background="#22FFFFFF"/>
+                        <TextBlock x:Name="SilverText" Style="{StaticResource H2}"/>
+                        <TextBlock x:Name="BracketText" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0"/>
+
+                        <Separator Margin="0,10" Background="#22FFFFFF"/>
+                        <TextBlock Text="Recommended grind spots" Style="{StaticResource Muted}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <ItemsControl x:Name="GrindRecs">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" Style="{StaticResource Muted}" Margin="0,2"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Next steps -->
+            <Border Style="{StaticResource Card}" Margin="0,16,0,0">
+                <StackPanel>
+                    <TextBlock Text="What to do next" Style="{StaticResource H2}" Margin="0,0,0,8"/>
+                    <ItemsControl x:Name="StepsList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="{DynamicResource BgPanelHiBrush}" CornerRadius="4" Padding="12" Margin="0,4">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" Foreground="{DynamicResource EmberBrush}"/>
+                                        <TextBlock Text="{Binding Detail}" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,3,0,0"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <!-- Next bosses -->
+            <Border Style="{StaticResource Card}" Margin="0,16,0,0">
+                <StackPanel>
+                    <TextBlock Text="Next bosses" Style="{StaticResource H2}" Margin="0,0,0,8"/>
+                    <ItemsControl x:Name="BossMini">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="160"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Countdown}" Style="{StaticResource Muted}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

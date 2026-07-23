@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>CudaSpirit.Core</RootNamespace>
+    <Version>2.4.1</Version>
+    <AssemblyVersion>2.4.1.0</AssemblyVersion>
+    <FileVersion>2.4.1.0</FileVersion>
+    <!-- Embed symbols so publish doesn't drop a loose CudaSpirit.Core.pdb next to the exe. -->
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.29" />
+  </ItemGroup>
+
+</Project>

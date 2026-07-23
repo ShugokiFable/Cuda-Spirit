@@ -1,0 +1,168 @@
+<UserControl x:Class="CudaSpirit.App.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel MaxWidth="760" HorizontalAlignment="Left">
+            <TextBlock Text="Settings" Style="{StaticResource H1}" Margin="0,0,0,16"/>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="OpenRouter" Style="{StaticResource H2}"/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,4,0,10"
+                               Text="Your API key is stored locally and sent only to OpenRouter for advisor requests."/>
+                    <TextBlock Text="API Key" Style="{StaticResource Muted}"/>
+                    <PasswordBox x:Name="ApiKeyBox" Margin="0,4,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="Model routing" Style="{StaticResource H2}"/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,4,0,10"
+                               Text="Primary and fallback OpenRouter model IDs. The app sends an ordered fallback list so temporary model outages do not brick the advisor."/>
+
+                    <Grid Margin="0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="170"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Reasoning" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" x:Name="ReasoningBox" Margin="0,3"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Reasoning fallback" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="ReasoningAltBox" Margin="0,3"/>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Background" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="BackgroundBox" Margin="0,3"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Background (free)" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="BackgroundFreeBox" Margin="0,3"/>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Vision" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="VisionBox" Margin="0,3"/>
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Vision fallback" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" x:Name="VisionAltBox" Margin="0,3"/>
+                    </Grid>
+                    <CheckBox x:Name="PreferFreeBox" Content="Prefer the free model for background tasks"
+                              Foreground="{DynamicResource InkSoftBrush}" Margin="0,8,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="Live data &amp; advisor knowledge" Style="{StaticResource H2}"/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,4,0,10"
+                               Text="Official patch notes and public market data work without a key. BDO Alerts is optional. Local JSON exports are indexed read-only into SQLite. Automatic sync runs at launch and repeats at the interval below."/>
+                    <Grid Margin="0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="170"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="BDO Alerts API key" VerticalAlignment="Center"/>
+                        <PasswordBox Grid.Row="0" Grid.Column="1" x:Name="BdoAlertsKeyBox" Margin="0,3"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Local JSON directory" VerticalAlignment="Center"/>
+                        <DockPanel Grid.Row="1" Grid.Column="1" Margin="0,3">
+                            <Button DockPanel.Dock="Right" Content="Browse…" Click="OnBrowseData" Margin="8,0,0,0"/>
+                            <TextBox x:Name="LocalDataBox"/>
+                        </DockPanel>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Automatic live sync" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="2" Grid.Column="1" x:Name="AutoSyncBox" VerticalAlignment="Center"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Auto-sync interval (min)" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="AutoSyncMinutesBox" Margin="0,3" Width="120" HorizontalAlignment="Left"/>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="AI records per query" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="KnowledgeRecordsBox" Margin="0,3" Width="120" HorizontalAlignment="Left"/>
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="AI context character cap" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" x:Name="KnowledgeCharactersBox" Margin="0,3" Width="120" HorizontalAlignment="Left"/>
+
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Patch details per sync" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" x:Name="PatchLimitBox" Margin="0,3" Width="120" HorizontalAlignment="Left"/>
+
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="Hot market items per sync" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" x:Name="MarketLimitBox" Margin="0,3" Width="120" HorizontalAlignment="Left"/>
+
+                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Rendered official fallback" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="8" Grid.Column="1" x:Name="RenderedFallbackBox" VerticalAlignment="Center"
+                                  ToolTip="Uses the bundled browser only when an official page blocks normal downloads."/>
+
+                        <TextBlock Grid.Row="9" Grid.Column="0" Text="Watch local JSON files" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="9" Grid.Column="1" x:Name="WatchLocalDataBox" VerticalAlignment="Center"
+                                  ToolTip="Automatically re-indexes changed JSON exports after a short debounce."/>
+
+                        <TextBlock Grid.Row="10" Grid.Column="0" Text="Pearl cooling-off (hours)" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="10" Grid.Column="1" x:Name="PearlCooldownBox" Margin="0,3" Width="120" HorizontalAlignment="Left"
+                                 ToolTip="Advisory wait period before non-expiring Pearl purchases. Set 0 to disable."/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="Account &amp; overlay" Style="{StaticResource H2}"/>
+                    <Grid Margin="0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="170"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Region" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="RegionBox" Margin="0,3" HorizontalAlignment="Left" Width="160"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Market tax rate" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="TaxBox" Margin="0,3" HorizontalAlignment="Left" Width="120"/>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Overlay opacity" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="OpacityBox" Margin="0,3" HorizontalAlignment="Left" Width="120"/>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Game window title" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="WindowTitleBox" Margin="0,3" HorizontalAlignment="Left" Width="260"/>
+                    </Grid>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,4,0,10"
+                               Text="The title must match part of the game window title bar. Default: Black Desert."/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="Overlay position" Style="{StaticResource H2}"/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,4,0,10"
+                               Text="When unlocked, the overlay tracks the game window. Drag its header to reposition it, then lock it in place."/>
+                    <Grid Margin="0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="170"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Tracking Y offset (px)" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" x:Name="OffsetYBox" Margin="0,3" HorizontalAlignment="Left" Width="120"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Click-through when locked" VerticalAlignment="Center"/>
+                        <CheckBox Grid.Row="1" Grid.Column="1" x:Name="ClickThroughBox" Margin="0,3" HorizontalAlignment="Left"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource GlowButton}" Content="Save settings" Click="OnSave"/>
+                <TextBlock x:Name="SavedLabel" Style="{StaticResource Muted}" VerticalAlignment="Center" Margin="14,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,34 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{647A59CE-A7DB-463A-ADD3-6A13330C152D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CudaSpirit.Core", "src\CudaSpirit.Core\CudaSpirit.Core.csproj", "{6F61F263-266C-463C-AEFE-9EF91AC1D5A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CudaSpirit.App", "src\CudaSpirit.App\CudaSpirit.App.csproj", "{EED64A38-5BAB-4BD9-B6CE-20B8AD162007}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F61F263-266C-463C-AEFE-9EF91AC1D5A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F61F263-266C-463C-AEFE-9EF91AC1D5A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F61F263-266C-463C-AEFE-9EF91AC1D5A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F61F263-266C-463C-AEFE-9EF91AC1D5A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EED64A38-5BAB-4BD9-B6CE-20B8AD162007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EED64A38-5BAB-4BD9-B6CE-20B8AD162007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EED64A38-5BAB-4BD9-B6CE-20B8AD162007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EED64A38-5BAB-4BD9-B6CE-20B8AD162007}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6F61F263-266C-463C-AEFE-9EF91AC1D5A4} = {647A59CE-A7DB-463A-ADD3-6A13330C152D}
+		{EED64A38-5BAB-4BD9-B6CE-20B8AD162007} = {647A59CE-A7DB-463A-ADD3-6A13330C152D}
+	EndGlobalSection
+EndGlobal

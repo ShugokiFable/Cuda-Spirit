@@ -1,0 +1,62 @@
+{
+  "schema": "cuda-spirit-route-example-v1",
+  "notice": "Illustrative values only. Replace with current sourced data.",
+  "nodes": [
+    {
+      "key": "example-city",
+      "name": "Example City",
+      "kind": "node",
+      "territory": "Example Territory",
+      "x": 1000,
+      "y": 1000,
+      "risk": 0.05,
+      "updatedAt": "2026-07-23T00:00:00Z"
+    },
+    {
+      "key": "example-farm-a",
+      "name": "Example Farm A",
+      "kind": "grind-zone",
+      "territory": "Example Territory",
+      "x": 5500,
+      "y": 2700,
+      "recommendedAp": 280,
+      "recommendedDp": 360,
+      "expectedSilverPerHour": 750000000,
+      "risk": 0.35,
+      "tags": "example agris solo",
+      "updatedAt": "2026-07-23T00:00:00Z"
+    },
+    {
+      "key": "example-farm-b",
+      "name": "Example Farm B",
+      "kind": "grind-zone",
+      "territory": "Example Territory",
+      "x": 8200,
+      "y": 4200,
+      "recommendedAp": 310,
+      "recommendedDp": 400,
+      "expectedSilverPerHour": 1050000000,
+      "risk": 0.65,
+      "tags": "example high-gear solo",
+      "updatedAt": "2026-07-23T00:00:00Z"
+    }
+  ],
+  "routes": [
+    {
+      "from": "example-city",
+      "to": "example-farm-a",
+      "travelMinutes": 7.5,
+      "risk": 0.1,
+      "bidirectional": true,
+      "transport": "ground"
+    },
+    {
+      "from": "example-farm-a",
+      "to": "example-farm-b",
+      "travelMinutes": 5.0,
+      "risk": 0.45,
+      "bidirectional": true,
+      "transport": "ground"
+    }
+  ]
+}

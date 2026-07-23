@@ -1,0 +1,100 @@
+<UserControl x:Class="CudaSpirit.App.Views.TrackersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel MaxWidth="900" HorizontalAlignment="Left">
+            <TextBlock Text="Trackers &amp; Timers" Style="{StaticResource H1}" Margin="0,0,0,4"/>
+            <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,0,0,16"
+                       Text="Live game-cycle countdowns and your own grind buff timers. Reset times are configurable defaults - adjust anchors to match your server."/>
+
+            <!-- Recurring resets -->
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="⏱ Recurring resets" Style="{StaticResource H2}" Margin="0,0,0,10"/>
+                    <ItemsControl x:Name="ResetList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="{DynamicResource BgPanelHiBrush}" CornerRadius="4" Padding="12,9" Margin="0,0,0,6">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Width="8" Height="8" CornerRadius="4" Margin="0,0,10,0"
+                                                Background="{Binding Accent}" VerticalAlignment="Center"/>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold"/>
+                                            <TextBlock Text="{Binding Note}" Style="{StaticResource Muted}"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                                            <TextBlock Text="{Binding Countdown}" FontSize="17" FontWeight="Bold"
+                                                       Foreground="{Binding Accent}" HorizontalAlignment="Right"/>
+                                            <TextBlock Text="{Binding When}" Style="{StaticResource Muted}" HorizontalAlignment="Right"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <!-- Buff timers -->
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="🧪 Grind buff timers" Style="{StaticResource H2}"/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,4,0,10"
+                               Text="Start a countdown when you pop a buff so you know when to refresh. Pick a preset or set a custom time (durations are editable)."/>
+                    <WrapPanel>
+                        <StackPanel Width="180" Margin="0,0,10,8">
+                            <TextBlock Text="Preset" Style="{StaticResource Muted}"/>
+                            <ComboBox x:Name="PresetBox" SelectionChanged="OnPreset"/>
+                        </StackPanel>
+                        <StackPanel Width="150" Margin="0,0,10,8">
+                            <TextBlock Text="Label" Style="{StaticResource Muted}"/>
+                            <TextBox x:Name="LabelBox"/>
+                        </StackPanel>
+                        <StackPanel Width="90" Margin="0,0,10,8">
+                            <TextBlock Text="Minutes" Style="{StaticResource Muted}"/>
+                            <TextBox x:Name="MinutesBox" Text="60"/>
+                        </StackPanel>
+                        <Button Style="{StaticResource GlowButton}" Content="▶ Start" Click="OnStartBuff" VerticalAlignment="Bottom" Margin="0,0,0,8"/>
+                    </WrapPanel>
+
+                    <Separator Margin="0,8" Background="#22FFFFFF"/>
+                    <TextBlock Text="Active" Style="{StaticResource Muted}" Margin="0,0,0,6"/>
+                    <ItemsControl x:Name="BuffList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="{Binding Bg}" CornerRadius="4" Padding="12,9" Margin="0,0,0,6"
+                                        BorderBrush="{Binding Edge}" BorderThickness="1">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="{Binding Label}" FontWeight="SemiBold"/>
+                                            <Border Height="4" CornerRadius="2" Background="#22FFFFFF" Margin="0,5,10,0" HorizontalAlignment="Stretch">
+                                                <Border Height="4" CornerRadius="2" Background="{Binding Edge}"
+                                                        Width="{Binding BarWidth}" HorizontalAlignment="Left"/>
+                                            </Border>
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="1" Text="{Binding Remaining}" FontSize="17" FontWeight="Bold"
+                                                   Foreground="{Binding TextColor}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                        <Button Grid.Column="2" Content="✕" Tag="{Binding Id}" Click="OnRemoveBuff"
+                                                Background="Transparent" Foreground="{DynamicResource CrimsonBrush}"
+                                                BorderThickness="0" Cursor="Hand" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock x:Name="NoBuffs" Text="No active timers - start one above." Style="{StaticResource Muted}"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

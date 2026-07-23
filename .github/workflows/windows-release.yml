@@ -1,0 +1,87 @@
+name: Windows Release Build
+
+on:
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test-package:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout build payload
+        uses: actions/checkout@v4
+
+      - name: Expand source payload when present
+        shell: pwsh
+        run: |
+          if (Test-Path source.zip) {
+            New-Item -ItemType Directory -Force -Path work | Out-Null
+            Expand-Archive -Path source.zip -DestinationPath work -Force
+          } else {
+            New-Item -ItemType Directory -Force -Path work | Out-Null
+            Get-ChildItem -Force | Where-Object { $_.Name -notin @('work', '.git') } | Copy-Item -Destination work -Recurse -Force
+          }
+
+      - name: Setup .NET 8.0.423
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.423
+
+      - name: Validate source structure
+        shell: pwsh
+        working-directory: work
+        run: python tools/validate_source.py
+
+      - name: Restore
+        shell: pwsh
+        working-directory: work
+        run: dotnet restore CudaSpirit.sln
+
+      - name: Build Release
+        shell: pwsh
+        working-directory: work
+        run: dotnet build CudaSpirit.sln -c Release --no-restore -warnaserror
+
+      - name: Publish single-file Windows release
+        shell: pwsh
+        working-directory: work
+        run: >-
+          dotnet publish src/CudaSpirit.App/CudaSpirit.App.csproj
+          -c Release -r win-x64 --self-contained true
+          -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:DebugType=embedded -p:DebugSymbols=false -warnaserror
+          -o publish
+
+      - name: Verify package and launch smoke test
+        shell: pwsh
+        working-directory: work
+        run: |
+          $exe = Join-Path (Resolve-Path publish) 'CudaSpirit.exe'
+          if (!(Test-Path $exe)) { throw 'CudaSpirit.exe was not produced.' }
+          $unexpected = Get-ChildItem publish -File | Where-Object { $_.Extension -in @('.pdb', '.xml') }
+          if ($unexpected) { throw "Unexpected debug/document files: $($unexpected.Name -join ', ')" }
+          $proc = Start-Process -FilePath $exe -PassThru
+          $deadline = (Get-Date).AddSeconds(60)
+          $windowShown = $false
+          while ((Get-Date) -lt $deadline) {
+            Start-Sleep -Milliseconds 500
+            $proc.Refresh()
+            if ($proc.HasExited) { throw "Application exited during smoke test with code $($proc.ExitCode)." }
+            if ($proc.MainWindowHandle -ne 0) { $windowShown = $true; break }
+          }
+          if (!$windowShown) { Stop-Process -Id $proc.Id -Force; throw 'Application ran but no main window appeared.' }
+          Stop-Process -Id $proc.Id -Force
+          Get-FileHash $exe -Algorithm SHA256 | Format-List | Out-File publish/SHA256.txt -Encoding utf8
+
+      - name: Upload Windows release
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cuda-Spirit-V2.4.1-Nexus
+          path: work/publish/*
+          if-no-files-found: error
+          retention-days: 1
