@@ -1,6 +1,8 @@
 name: Windows Release Build
 
 on:
+  push:
+    branches: [ master, main ]
   pull_request:
     branches: [ master, main ]
   workflow_dispatch:
