@@ -123,6 +123,7 @@ public sealed class ContextAggregator
             awakening = s.Awakening == 0 ? (int?)null : s.Awakening,
             dp = s.Dp == 0 ? (int?)null : s.Dp,
             gearscore = s.GearScore == 0 ? (int?)null : s.GearScore,
+            isSeasonCharacter = s.IsSeasonCharacter || prefs.IsSeasonCharacter,
             silver = s.Silver,
             cp = s.ContributionPoints,
             energy = s.EnergyMax > 0 ? $"{s.EnergyCurrent}/{s.EnergyMax}" : null,

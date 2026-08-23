@@ -48,6 +48,7 @@ public sealed class AppSettings
     public bool ShowBeginnerHints { get; set; } = true;
     public string StartupPage { get; set; } = "navigator";
     public AdventurerStage AdventurerStage { get; set; } = AdventurerStage.BrandNew;
+    public bool IsSeasonCharacter { get; set; }
     public PlayFocus PlayFocus { get; set; } = PlayFocus.Guided;
     public SpendingStyle SpendingStyle { get; set; } = SpendingStyle.ValueBuyer;
     public string MainClass { get; set; } = "";

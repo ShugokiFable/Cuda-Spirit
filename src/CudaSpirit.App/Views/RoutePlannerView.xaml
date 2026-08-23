@@ -40,10 +40,12 @@
                     <ListBox x:Name="RecommendationsList" MinHeight="120" MaxHeight="300">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="4,5">
-                                    <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
-                                    <TextBlock Text="{Binding Detail}" Style="{StaticResource Muted}" TextWrapping="Wrap"/>
-                                </StackPanel>
+                                <Border Style="{StaticResource BoardRow}" Margin="0,3">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{Binding Detail}" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                                    </StackPanel>
+                                </Border>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
@@ -57,7 +59,9 @@
                     <ItemsControl x:Name="RouteSteps">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" Margin="0,3" TextWrapping="Wrap"/>
+                                <Border Style="{StaticResource BoardRow}" Margin="0,3">
+                                    <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

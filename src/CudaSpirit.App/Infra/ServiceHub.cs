@@ -79,6 +79,8 @@ public sealed class ServiceHub : IDisposable
 
         BuiltInKnowledge = new BuiltInKnowledgeSeeder(Db);
         BuiltInKnowledge.Seed();
+        new BuiltInRouteSeeder(Db).Seed();
+        Bosses = new BossScheduleService(region: Settings.Current.Region);
         OpenRouter = new OpenRouterClient(Http, () => Settings.Current.OpenRouterApiKey);
         Live = new ManualLiveStateProvider(Db);
         Knowledge = new KnowledgeRetriever(Db);
@@ -98,7 +100,6 @@ public sealed class ServiceHub : IDisposable
         Profile = new BdoProfileClient(Http);
         Garmoth = new GarmothClient(Http);
         Enhancement = new EnhancementSimulator();
-        Bosses = new BossScheduleService();
         Progression = new ProgressionHelper();
         Grind = new GrindTracker(Db, Settings.Current.MarketTaxRate);
         ItemSafety = new ItemSafetyAdvisor(Db, Knowledge, Settings);

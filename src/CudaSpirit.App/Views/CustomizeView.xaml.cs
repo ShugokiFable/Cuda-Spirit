@@ -68,6 +68,7 @@ public partial class CustomizeView : UserControl, IRefreshable
         HoursBox.Text = s.WeeklyPlayHours.ToString(CultureInfo.InvariantCulture);
         BudgetBox.Text = s.MonthlyPearlBudget.ToString(CultureInfo.InvariantCulture);
         MagnusBox.IsChecked = s.HasMagnusStorage;
+        SeasonBox.IsChecked = s.IsSeasonCharacter;
         StorageMaidBox.IsChecked = s.HasStorageMaid;
         TransactionMaidBox.IsChecked = s.HasTransactionMaid;
         TentBox.IsChecked = s.HasTent;
@@ -102,6 +103,7 @@ public partial class CustomizeView : UserControl, IRefreshable
             s.WeeklyPlayHours = ParseInt(HoursBox.Text, s.WeeklyPlayHours, 1, 168);
             s.MonthlyPearlBudget = ParseInt(BudgetBox.Text, s.MonthlyPearlBudget, 0, 1_000_000);
             s.HasMagnusStorage = MagnusBox.IsChecked == true;
+            s.IsSeasonCharacter = SeasonBox.IsChecked == true;
             s.HasStorageMaid = StorageMaidBox.IsChecked == true;
             s.HasTransactionMaid = TransactionMaidBox.IsChecked == true;
             s.HasTent = TentBox.IsChecked == true;

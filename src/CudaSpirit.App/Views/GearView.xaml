@@ -5,6 +5,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -50,15 +51,43 @@
             </StackPanel>
         </Border>
 
+        <!-- Next steps -->
+        <Border Grid.Row="2" Style="{StaticResource Card}" Margin="0,0,0,14">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top" Text="Next upgrades (bracket-aware)" Style="{StaticResource H2}" Margin="0,0,0,8"/>
+                <ScrollViewer MaxHeight="260" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl x:Name="NextStepsList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource BoardRow}" Margin="0,3">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Width="3" CornerRadius="2" Background="{DynamicResource EmberBrush}" Margin="0,0,11,0"/>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+                                            <TextBlock Text="{Binding Detail}" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
+        </Border>
+
         <!-- List -->
-        <Border Grid.Row="2" Style="{StaticResource Card}">
+        <Border Grid.Row="3" Style="{StaticResource Card}">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Top" Text="Owned gear" Style="{StaticResource H2}" Margin="0,0,0,8"/>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <ItemsControl x:Name="GearList">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Background="{DynamicResource BgPanelHiBrush}" CornerRadius="4" Padding="12,8" Margin="0,3">
+                                <Border Style="{StaticResource BoardRow}" Margin="0,3">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="110"/>

@@ -53,6 +53,9 @@ public sealed class PlayerState
     /// <summary>Name of the current grind spot, if known/selected.</summary>
     public string? GrindZone { get; set; }
 
+    /// <summary>True when the active character is a season character (Tuvala path, season spots).</summary>
+    public bool IsSeasonCharacter { get; set; }
+
     /// <summary>How this snapshot was produced - shown to the AI so it can weigh confidence.</summary>
     public string Source { get; set; } = "manual";
 

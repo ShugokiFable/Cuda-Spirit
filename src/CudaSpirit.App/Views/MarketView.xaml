@@ -49,7 +49,7 @@
                     <ItemsControl x:Name="AlertList">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Background="{DynamicResource BgPanelHiBrush}" CornerRadius="4" Padding="12,8" Margin="0,3">
+                                <Border Style="{StaticResource BoardRow}" Margin="0,3">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -69,6 +69,24 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Card}" Margin="0,14,0,0">
+                <StackPanel>
+                    <TextBlock Text="How the market really resolves" Style="{StaticResource H2}"/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,8,0,0"
+                               Text="• Prices move only at 5-minute ticks; each tick reprices one alternating category group (~10-minute full cycle). Snipe by watching an item as its group's tick approaches."/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0"
+                               Text="• Arrows are rails: up-arrow = true max (price cannot rise, buys become a shared RNG lottery); max without arrow can still climb; min without down-arrow can still fall."/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0"
+                               Text="• Cheap non-queue items sell strictly first-listed-first-sold. Never press Relist - it resets your position to the back of the queue. Let lot one sell, then list everything you have accumulated."/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0"
+                               Text="• Registration-queue items sell at random at max/true-max price, first-come-first-served below it, and random again at true min. Multiple pre-orders don't multiply odds - they let you win whole larger lots."/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0"
+                               Text="• Pre-order play: place a low order to get listing notifications, raise it within the 15-minute window only if needed. A visible max-price order just tells sellers what to charge you."/>
+                    <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0"
+                               Text="• Pearl-item registration counts reset Mondays 00:00 UTC - list right after the reset for the shortest queue."/>
                 </StackPanel>
             </Border>
         </StackPanel>

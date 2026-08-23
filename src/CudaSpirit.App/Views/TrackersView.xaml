@@ -14,7 +14,7 @@
                     <ItemsControl x:Name="ResetList">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Background="{DynamicResource BgPanelHiBrush}" CornerRadius="4" Padding="12,9" Margin="0,0,0,6">
+                                <Border Style="{StaticResource BoardRow}" Margin="0,0,0,6">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>

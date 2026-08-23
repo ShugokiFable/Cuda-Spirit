@@ -113,6 +113,7 @@
                             <TextBlock Text="Monthly Pearl budget" Style="{StaticResource Muted}" Margin="0,11,0,4"/><TextBox x:Name="BudgetBox"/>
                             <Separator Margin="0,14,0,9"/>
                             <CheckBox x:Name="MagnusBox" Content="Magnus remote storage unlocked" Margin="0,4"/>
+                            <CheckBox x:Name="SeasonBox" Content="Current character is a season character" Margin="0,4"/>
                             <CheckBox x:Name="StorageMaidBox" Content="Own a storage maid or butler" Margin="0,4"/>
                             <CheckBox x:Name="TransactionMaidBox" Content="Own a transaction maid or butler" Margin="0,4"/>
                             <CheckBox x:Name="TentBox" Content="Own a campsite or tent" Margin="0,4"/>

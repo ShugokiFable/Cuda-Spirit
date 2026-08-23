@@ -99,11 +99,13 @@
                         <TextBlock x:Name="BracketText" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0"/>
 
                         <Separator Margin="0,10" Background="#22FFFFFF"/>
-                        <TextBlock Text="Recommended grind spots" Style="{StaticResource Muted}" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBlock Text="RECOMMENDED GRIND SPOTS" Style="{StaticResource Caption}" FontWeight="SemiBold" Margin="0,0,0,6"/>
                         <ItemsControl x:Name="GrindRecs">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding}" Style="{StaticResource Muted}" Margin="0,2"/>
+                                    <Border Style="{StaticResource BoardRow}" Margin="0,3">
+                                        <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                    </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -118,11 +120,18 @@
                     <ItemsControl x:Name="StepsList">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Background="{DynamicResource BgPanelHiBrush}" CornerRadius="4" Padding="12" Margin="0,4">
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" Foreground="{DynamicResource EmberBrush}"/>
-                                        <TextBlock Text="{Binding Detail}" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,3,0,0"/>
-                                    </StackPanel>
+                                <Border Style="{StaticResource BoardRow}" Margin="0,4">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Width="3" CornerRadius="2" Background="{DynamicResource EmberBrush}" Margin="0,0,11,0"/>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="{Binding Title}" FontWeight="SemiBold" Foreground="{DynamicResource EmberBrush}"/>
+                                            <TextBlock Text="{Binding Detail}" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,3,0,0"/>
+                                        </StackPanel>
+                                    </Grid>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -137,14 +146,16 @@
                     <ItemsControl x:Name="BossMini">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="0,3">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="160"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="SemiBold"/>
-                                    <TextBlock Grid.Column="1" Text="{Binding Countdown}" Style="{StaticResource Muted}"/>
-                                </Grid>
+                                <Border Style="{StaticResource BoardRow}" Margin="0,3">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Name}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding Countdown}" Style="{StaticResource Muted}" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

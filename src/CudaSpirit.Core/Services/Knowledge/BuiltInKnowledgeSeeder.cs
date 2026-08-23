@@ -7,7 +7,7 @@ namespace CudaSpirit.Core.Services.Knowledge;
 /// <summary>Versioned safety and onboarding knowledge available before the first network sync.</summary>
 public sealed class BuiltInKnowledgeSeeder
 {
-    public const string SourceId = "cuda-curated-guide-v5";
+    public const string SourceId = "cuda-curated-guide-v6";
     private readonly AppDatabase _db;
 
     public BuiltInKnowledgeSeeder(AppDatabase db) => _db = db;
@@ -104,6 +104,24 @@ public sealed class BuiltInKnowledgeSeeder
             Guide("purchase-proof", "Preserve proof before an expensive Pearl purchase",
                 "Capture the exact product page, included items, probabilities when applicable, sale dates, binding notices, purchase limit, and cancellation language. Review Purchase History before opening or consuming anything if the offer is wrong. Screenshots make support and self-auditing far easier.",
                 "pearl purchase screenshot history cancel probability sale date bind", "https://www.naeu.playblackdesert.com/en-us/Wiki?wikiNo=254"),
+            Guide("ap-dp-brackets", "AP/DP brackets: the hidden multiplier on every upgrade",
+                "Sheet AP (equipment window) earns bonus AP at fixed thresholds: 100(+5), 140(+10), 170(+15), 184(+20), 209(+30), 235(+40), then 245/249/253/257/261/265/269 in fast steps (+48 to +137 total), 273-309 in +4 steps (up to +200), and beyond 309 every few points add +3 more (309=+200, 341=+214, 375=+233, 449=+297). Brackets apply separately to main-hand and awakening AP. DP brackets add +1% damage reduction per bracket from 203 (1%) to 401+ (30%). A 1-AP Caphras tap that crosses a bracket is worth 10-20 effective AP - always check the next threshold before big purchases. Hover the (?) next to AP/DP in game to see your current bracket bonuses.",
+                "ap dp bracket bonus threshold caphras tap upgrade breakpoint damage reduction sheet", "https://www.blackdesertfoundry.com/ap-and-dp-brackets-guide/"),
+            Guide("grind-spot-tiers", "Current grind-spot tiers by gear (pre-tax silver/hour with blue loot scroll)",
+                "Rough current ladder: 100-190 AP: Titium Valley, Desert Naga, Bashim, Polly's Forest, Fadus/Loopy Tree (also season-friendly). 200-260 AP: Sycraia Upper, Shultz/Sausans, Mirumok 2-3P, Roud Sulfur, Gyfin Upper 5P, Murrowak's Labyrinth (winter). 260-300 AP: Gyfin Underground, Olun's Valley 3P base, Turos base, Crypt of Resting Thoughts, Jade Starlight Forest. 300+ AP: Dehkia spots (Turos 2P, Thornwood, Cyclops, Olun's 3P, Ash Forest, Crescent Shrine, Hystria, Aakman, Pila Ku), Quint Hill Trolls, Hexe Sanctuary, City of the Dead, Yzrahid Highlands, and Tungrad Ruins at the top (~320 AP / 410 DP, ~1.1B/h). Values swing with market trash prices - check the Route Planner for the live table and your gear fit.",
+                "grind spot tier silver hour ap dp dehkia trash loot agris money farming", "https://grumpygreen.cricket/bdo-grinding-spots/"),
+            Guide("season-path", "Season character path: Naru to PEN Tuvala to graduation",
+                "Season characters gear up entirely through Tuvala: enhance Naru (main quests) to PEN with beginner stones, exchange for Tuvala, then push every Tuvala piece to PEN with Time-Filled Black Stones and refined stones - no Caphras, no boss gear, no failure downgrades below TRI-level risks that normal gear has. Do the season pass alongside the main quest for materials, pets, and inventory. Before graduating: finish the pass, use Fughar's Timepiece, exchange leftover season materials, and choose early vs natural graduation. Graduation converts Tuvala to family-bound gear (TET->PEN-equivalent via boss gear conversion coupons). Season spots (Titium, Naga, Polly's, Fadus, Mirumok, Sycraia) are tuned for this gear band.",
+                "season character tuvala naru pen graduation fughar timepiece season pass simplified quest", "https://grumpygreen.cricket/season"),
+            Guide("world-boss-rotation", "World bosses spawn in paired windows on a weekly rotation",
+                "NA/EU PC world bosses spawn two-at-a-time in shared windows (e.g. Kzarka+another at the same minute), with Garmoth on a fixed daily line and Vell/Offin on specific days. Quint and Muraka are field bosses on a 15-minute timer. The Bosses tab lists the next spawns in your local time from the built-in NA/EU rotation tables; if a spawn looks wrong after a game update, cross-check the official wiki world-boss page or garmoth.com/boss-timer. Boss loot needs damage contribution - bring at least recommended-AP gear for the boss tier.",
+                "world boss schedule kzarka kutum karanda nouver offin vell garmoth quint muraka sangoon bulgasal uturi pig king spawn time", "https://www.naeu.playblackdesert.com/Wiki?wikiNo=83"),
+            Guide("pearl-shop-deals", "Pearl Shop deals rotate on Thursdays - stack coupons on sales",
+                "New products and refreshed deals land Thursday after maintenance, and most sale windows run Thursday-to-Thursday (about two weeks). Discount Coupons sit in the Coupon Book (F3), often expire within days, and STACK on top of sale prices - a 20% coupon on an already-discounted Value Pack is the cheapest pearls-per-day in the game. Deep Value Pack discounts (seen up to -40%) rotate back periodically. Bonus events (extra-pearl boxes, 2-for-1-style pearl/outfit deals) cluster around celebrations and major updates - pairing one with a coupon is historically the best stacking moment. Family purchase limits are per-offer, not lifetime. Playbook: wishlist it, never pay launch price, wait for sale+coupon overlap, check the family limit first, then run the offer through the Pearl Shop tab's evaluator.",
+                "pearl shop deals sale coupon rotation thursday value pack 2 for 1 discount outfit bonus box", "https://www.naeu.playblackdesert.com/en-US/News/Detail?groupContentNo=9596&countryType=en-US"),
+            Guide("market-mechanics", "Central Market ticks, queues, and how listings really resolve",
+                "Prices move only at 5-minute ticks, each repricing one alternating category group (half the market per tick, ~10-minute cycle; EU anchor about 19:18/19:28 server time). To snipe a listing, sit on the item as its group's tick approaches; to sell into demand, register just before your group ticks. Arrows mark the rails: up-arrow = true max (price cannot rise, buys become an RNG lottery shared by all pre-orders), max without arrow can still climb, min without down-arrow can still fall. Cheap non-queue items sell strictly first-listed-first-sold - never press Relist, it resets your position to the back of the queue. Registration-queue items (rare/expensive) sell at random at max or true-max price, first-come-first-served below, random again at true min. Multiple pre-orders do not multiply win odds - they let you win whole larger lots when you do win. Pre-order play: place a low order to get listing notifications, raise it inside the 15-minute window only if needed; a visible max-price order just tells sellers what to charge you. Pearl-item registration counts reset Mondays 00:00 UTC.",
+                "central market tick timing snipe pre order true max true min random first come first serve relist queue position pearl item registration reset", "https://www.youtube.com/watch?v=gxpKhQiv0yU"),
         };
 
         var count = _db.UpsertKnowledgeBatch(records);
@@ -115,7 +133,7 @@ public sealed class BuiltInKnowledgeSeeder
             LastAttemptAt = now,
             LastSuccessAt = now,
             LastRecordCount = records.Count,
-            MetadataJson = JsonSerializer.Serialize(new { version = 5, purpose = "onboarding-returner-retirement-class-choice-ui-decoder-item-safety-pearl-value" })
+            MetadataJson = JsonSerializer.Serialize(new { version = 6, purpose = "onboarding-returner-retirement-class-choice-ui-decoder-item-safety-pearl-value-market-mechanics-deals" })
         });
         return count;
     }

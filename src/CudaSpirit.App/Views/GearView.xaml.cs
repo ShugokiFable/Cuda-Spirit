@@ -33,6 +33,10 @@ public partial class GearView : UserControl, IRefreshable
             DpText = g.Dp > 0 ? $"{g.Dp} DP" : "",
             CaphrasText = g.Caphras > 0 ? $"Caphras {g.Caphras}" : ""
         }).ToList();
+
+        var state = _hub.Live.Current;
+        state.IsSeasonCharacter |= _hub.Settings.Current.IsSeasonCharacter;
+        NextStepsList.ItemsSource = _hub.Progression.Suggest(state);
     }
 
     private void OnAdd(object sender, RoutedEventArgs e)

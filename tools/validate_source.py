@@ -70,11 +70,11 @@ def project_version(path: Path) -> str | None:
 
 app_version = project_version(ROOT / 'src/CudaSpirit.App/CudaSpirit.App.csproj')
 core_version = project_version(ROOT / 'src/CudaSpirit.Core/CudaSpirit.Core.csproj')
-if app_version != '2.4.1' or core_version != '2.4.1':
-    errors.append(f'Version mismatch: app={app_version}, core={core_version}, expected 2.4.1.')
+if app_version != '2.4.2' or core_version != '2.4.2':
+    errors.append(f'Version mismatch: app={app_version}, core={core_version}, expected 2.4.2.')
 http_fetch = (ROOT / 'src/CudaSpirit.Core/Services/LiveData/HttpFetch.cs').read_text(encoding='utf-8')
-if 'CudaSpirit/2.4.1' not in http_fetch:
-    errors.append('HTTP user-agent was not bumped to CudaSpirit/2.4.1.')
+if 'CudaSpirit/2.4.2' not in http_fetch:
+    errors.append('HTTP user-agent was not bumped to CudaSpirit/2.4.2.')
 
 main_xaml = (ROOT / 'src/CudaSpirit.App/MainWindow.xaml').read_text(encoding='utf-8')
 main_cs = (ROOT / 'src/CudaSpirit.App/MainWindow.xaml.cs').read_text(encoding='utf-8')
@@ -87,7 +87,7 @@ for required in ('CommandPlaceholder', 'PageCrumbText', 'NavBrandDetails', 'Guid
         errors.append(f'Missing premium shell element: {required}.')
 if 'OnCommandTextChanged' not in main_cs:
     errors.append('Command palette placeholder handler is missing.')
-notes.append(f'Verified 2.4.1 release metadata and {len(nav_tags)} shell navigation destinations.')
+notes.append(f'Verified 2.4.2 release metadata and {len(nav_tags)} shell navigation destinations.')
 
 # Regression guard for the compiler error found by the first real Windows build.
 pearl_advisor = (ROOT / 'src/CudaSpirit.Core/Services/Guidance/PearlShopAdvisor.cs').read_text(encoding='utf-8')

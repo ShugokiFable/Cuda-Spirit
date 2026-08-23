@@ -17,7 +17,7 @@ internal static class HttpFetch
             try
             {
                 using var req = new HttpRequestMessage(HttpMethod.Get, url);
-                req.Headers.TryAddWithoutValidation("User-Agent", "CudaSpirit/2.4.1");
+                req.Headers.TryAddWithoutValidation("User-Agent", "CudaSpirit/2.4.2");
                 req.Headers.TryAddWithoutValidation("Accept", "application/json,text/html;q=0.9,*/*;q=0.7");
                 if (headers is not null)
                     foreach (var pair in headers)

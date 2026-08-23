@@ -62,6 +62,24 @@
                     </Border>
                 </Grid>
 
+                <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock Text="Deal rotation playbook" Style="{StaticResource H2}"/>
+                        <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,8,0,0"
+                                   Text="• New products and refreshed deals land Thursday after maintenance; most sale windows run Thu → Thu (~two weeks)."/>
+                        <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0"
+                                   Text="• Coupons live in the Coupon Book (F3), often expire within days, and stack ON TOP of sale prices - coupon + sale is the normal best moment."/>
+                        <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0"
+                                   Text="• Deep Value Pack discounts (seen up to -40%) rotate back periodically - usually better pearls-per-day than any bundle."/>
+                        <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0"
+                                   Text="• Bonus events (extra-pearl boxes, 2-for-1-style pearl/outfit deals) cluster around celebrations and major updates - pair one with a coupon for the historic best stacking moment."/>
+                        <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0"
+                                   Text="• Family purchase limits are per-offer, not lifetime."/>
+                        <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,6,0,0"
+                                   Text="• Playbook: wishlist it → wait for sale+coupon overlap → check the family limit → score it in the evaluator above before buying."/>
+                    </StackPanel>
+                </Border>
+
                 <Grid>
                     <Grid.ColumnDefinitions><ColumnDefinition Width="1.25*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                     <Border Style="{StaticResource Card}" Margin="0,0,12,16">

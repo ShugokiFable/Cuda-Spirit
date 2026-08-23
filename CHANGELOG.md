@@ -1,3 +1,28 @@
+# Cuda Spirit 2.4.2
+
+## Real data layer: the companion now knows the game
+
+- Seeded a bundled, sourced catalog of 77 real grind zones + 10 city hubs with AP/DP requirements, silver/hour, risk, traits, and travel edges (GrumpyG monster-zone table, current roster).
+- Route Planner and Dashboard farm recommendations now return real spots out of the box - no example JSON import needed. Seeding is version-gated and never overwrites user imports.
+- Replaced the 2-year-old bracket tables with the current 2026 AP table (100→449) and DP table (203→401+); Gear next-steps now name the exact next bracket and flag big-jump brackets.
+- Surfaced ProgressionHelper as "Next upgrades (bracket-aware)" on the Gear tab (the logic existed but was never shown anywhere).
+- Added season character support: Customize checkbox, Tuvala-path next-steps, season flag in AI context.
+- Replaced the approximate boss timetable with the real NA/EU PC rotation: paired spawn windows, fixed daily Garmoth lines, correct server-timezone conversion (NA UTC-7 / EU CET, no DST).
+- Added curated AI knowledge: bracket guide, grind-spot tiers, season path, world-boss rotation.
+- Added tools/CudaSpirit.Smoke: end-to-end verification of seeder, planner, brackets, and boss schedule against a live temp SQLite database.
+
+## Board/table UI: Obsidian treatment applied to data surfaces
+
+- DataGrid now fully re-templated in the theme: flat caption headers, hairline row separators, accent-rail selection, no Aero2 header grippers, cell chrome, or default blue selection anywhere.
+- New BoardRow style: one flat dark row card (BgPanelHi, 4 px radius, hairline border) used by every hand-rolled list - Dashboard grind recs / progression steps / boss mini, Gear owned + next-upgrades, Route Planner recommendations + steps, Market alerts, Tracker resets.
+- Dashboard section labels promoted to small-caps caption style; progression steps got accent rails; boss mini rows aligned name/countdown.
+
+## Pearl Shop and Central Market advice
+
+- Added curated guides: pearl-shop-deals (Thursday deal rotation, Thu-to-Thu sale windows, F3 Coupon Book stacking on sales, Value Pack discount cycles, bonus-event timing) and market-mechanics (5-minute tick system with alternating category groups, true-max/min arrow rails, first-come-first-served vs random resolution by price rail, Relist position reset trap, pre-order notification play, Monday 00:00 UTC registration-count reset). Sources: official NA/EU Pearl Shop Update notices + Im Choice's Central Market technical breakdown.
+- Pearl Shop tab: new "Deal rotation playbook" card (rotation cadence, coupon stacking, family limits, wishlist-first workflow).
+- Market tab: new "How the market really resolves" card (tick sniping, queue rules, pre-order strategy).
+
 # Cuda Spirit 2.4.1
 
 ## Obsidian UI major rework

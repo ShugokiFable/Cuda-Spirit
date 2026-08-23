@@ -1092,6 +1092,30 @@ public sealed partial class AppDatabase : IDisposable
         return Convert.ToInt32(cmd.ExecuteScalar() ?? 0);
     }
 
+    public string? GetSchemaInfo(string key)
+    {
+        lock (_gate)
+        {
+            using var cmd = _conn.CreateCommand();
+            cmd.CommandText = "SELECT value FROM schema_info WHERE key=$key LIMIT 1";
+            cmd.Parameters.AddWithValue("$key", key);
+            var value = cmd.ExecuteScalar();
+            return value is null or DBNull ? null : Convert.ToString(value);
+        }
+    }
+
+    public void SetSchemaInfo(string key, string value)
+    {
+        lock (_gate)
+        {
+            using var cmd = _conn.CreateCommand();
+            cmd.CommandText = "INSERT INTO schema_info(key,value) VALUES($key,$value) ON CONFLICT(key) DO UPDATE SET value=$value";
+            cmd.Parameters.AddWithValue("$key", key);
+            cmd.Parameters.AddWithValue("$value", value);
+            cmd.ExecuteNonQuery();
+        }
+    }
+
     private DateTimeOffset? ScalarDateNoLock(string sql)
     {
         using var cmd = _conn.CreateCommand();

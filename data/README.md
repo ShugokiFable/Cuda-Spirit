@@ -52,4 +52,4 @@ Both endpoint keys must exist as route nodes. Matching is case-insensitive and s
 
 ## Important
 
-`data/example-routes.json` is illustrative schema data, not a current Black Desert recommendation dataset. Replace its values with current, sourced data for your region and patch.
+`data/example-routes.json` is illustrative schema data for the import pipeline, not a recommendation dataset. A sourced catalog of real grind zones ships inside the app (`data/bdo-grind-catalog.json`, embedded into the build) and seeds the route graph automatically on first run - see `tools/gen_catalog.py` for the data source and regeneration. Local imports remain the way to layer newer or personal data on top.

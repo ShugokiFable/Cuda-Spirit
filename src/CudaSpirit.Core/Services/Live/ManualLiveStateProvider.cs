@@ -75,6 +75,7 @@ public sealed class ManualLiveStateProvider : ILiveStateProvider
         ActiveBuffs = new List<string>(s.ActiveBuffs),
         Gear = new List<GearItem>(s.Gear),
         GrindZone = s.GrindZone,
+        IsSeasonCharacter = s.IsSeasonCharacter,
         Source = s.Source
     };
 }
